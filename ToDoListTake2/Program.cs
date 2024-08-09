@@ -31,12 +31,13 @@ class Program
             Console.WriteLine();
             Console.WriteLine("1. View your ToDo List");
             Console.WriteLine("2. Update a task status on your ToDo List");
-            Console.WriteLine("3. Add a new task to your ToDo List" );
-            Console.WriteLine("4. Delete a task from your ToDo List");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("3. Update a task: add a day you plan to tackle the task!");
+            Console.WriteLine("4. Add a new task to your ToDo List" );
+            Console.WriteLine("5. Delete a task from your ToDo List");
+            Console.WriteLine("6. Exit");
     
             int.TryParse(Console.ReadLine(), out userInput);
-            while (userInput == null || userInput < 1 || userInput > 5)
+            while (userInput == null || userInput < 1 || userInput > 6)
             {
                 Console.WriteLine("I'm sorry, that was not one of our options. Please type the number of the option you would like.");
                 int.TryParse(Console.ReadLine(), out userInput);
@@ -85,16 +86,15 @@ class Program
                     Console.ReadKey();
                     break;
                 case 2:
-                    int taskId = 0;
-                    string updatedStatus = "";
+                    var taskId = 0;
                     Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
-                    while(!int.TryParse(Console.ReadLine(), out userInput))
+                    while(!int.TryParse(Console.ReadLine(), out taskId))
                     {
                         Console.WriteLine("Oops, you must enter a numeric value...");
                         int.TryParse(Console.ReadLine(), out taskId);
                     }
 
-                    while (userInput == 0)
+                    while (taskId == 0)
                     {
                         items = itemsInToDoList.ListAllToDoItems();
                         foreach (var item in items)
@@ -110,8 +110,8 @@ class Program
                     }
 
                     Console.WriteLine("Ok, please enter an updated status for your task.");
-                    updatedStatus = Console.ReadLine();
-                    itemsInToDoList.UpdateTask(taskId, updatedStatus);
+                    var updatedStatus = Console.ReadLine();
+                    itemsInToDoList.UpdateTaskStatus(taskId, updatedStatus);
                     Console.WriteLine("Your status has been updated!");
                     Console.WriteLine("Would you like to update another item? Yes/No");
                     yesOrNo = Console.ReadLine().ToLower();
@@ -141,7 +141,7 @@ class Program
 
                         Console.WriteLine("Ok, please enter an updated status for your task.");
                         userAnswer = Console.ReadLine();
-                        itemsInToDoList.UpdateTask(userInput, userAnswer);
+                        itemsInToDoList.UpdateTaskStatus(userInput, userAnswer);
                         Console.WriteLine("Your status has been updated!");
                         Console.WriteLine("Would you like to update another item? Yes/No");
                         yesOrNo = Console.ReadLine().ToLower();
@@ -155,6 +155,74 @@ class Program
                     Console.ReadKey();
                     break;
                 case 3:
+                    Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
+                    while(!int.TryParse(Console.ReadLine(), out taskId))
+                    {
+                        Console.WriteLine("Oops, you must enter a numeric value...");
+                        int.TryParse(Console.ReadLine(), out taskId);
+                    }
+
+                    while (taskId == 0)
+                    {
+                        items = itemsInToDoList.ListAllToDoItems();
+                        foreach (var item in items)
+                        {
+                            Console.WriteLine($"id: {item.id} | task: {item.task} | status: {item.status} | scheduled_for: {item.scheduled_for}");
+                        }
+                        Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id.");
+                        while(!int.TryParse(Console.ReadLine(), out taskId))
+                        {
+                            Console.WriteLine("Oops, you must enter a numeric value...");
+                            int.TryParse(Console.ReadLine(), out taskId);
+                        }
+                    }
+
+                    Console.WriteLine("Ok, please enter the day you plan to accomplish your task. (Example: Monday)");
+                    var updatedDayOfWeek = Console.ReadLine();
+                    itemsInToDoList.UpdateTaskScheduledFor(taskId, updatedDayOfWeek);
+                    Console.WriteLine("Your status has been updated!");
+                    Console.WriteLine("Would you like to update another item? Yes/No");
+                    yesOrNo = Console.ReadLine().ToLower();
+                    while (yesOrNo != "yes" && yesOrNo != "no")
+                    {
+                        Console.WriteLine("I'm sorry, that was not one of our options. Please type 'yes' or 'no'");
+                        yesOrNo = Console.ReadLine().ToLower();
+                    }
+                    if (yesOrNo == "yes")
+                    {
+                        Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
+                        while(!int.TryParse(Console.ReadLine(), out userInput))
+                        {
+                            Console.WriteLine("Oops, you must enter a numeric value...");
+                            int.TryParse(Console.ReadLine(), out userInput);
+                        }
+                        while (userInput == 0)
+                        {
+                            itemsInToDoList.ListAllToDoItems();
+                            Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id.");
+                            while(!int.TryParse(Console.ReadLine(), out userInput))
+                            {
+                                Console.WriteLine("Oops, you must enter a numeric value...");
+                                int.TryParse(Console.ReadLine(), out userInput);
+                            }
+                        }
+
+                        Console.WriteLine("Ok, please enter the day you plan to accomplish your task. (Example: Monday)");
+                        updatedDayOfWeek = Console.ReadLine();
+                        itemsInToDoList.UpdateTaskScheduledFor(userInput, updatedDayOfWeek);
+                        Console.WriteLine("Your status has been updated!");
+                        Console.WriteLine("Would you like to update another item? Yes/No");
+                        yesOrNo = Console.ReadLine().ToLower();
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+                    break;
+                case 4:
                     do
                     {
                         Console.WriteLine("Please enter the task you want to add to your ToDo List");
@@ -173,7 +241,7 @@ class Program
                         }
                     } while (yesOrNo == "yes");
                     break;
-                case 4:
+                case 5:
                     items = itemsInToDoList.ListAllToDoItems();
                     foreach (var item in items)
                     {
@@ -239,7 +307,7 @@ class Program
                         }
                     } while (yesOrNo == "yes");
                     break;
-                case 5:
+                case 6:
                     Console.WriteLine("Thank you for using ToDo! See you again soon...");
                     running = false;
                     break;

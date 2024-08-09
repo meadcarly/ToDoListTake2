@@ -6,7 +6,9 @@ public interface IToDoListRepository
 
     public void AddItem(string task, string status, string scheduled_for);
 
-    public void UpdateTask(int id, string updatedStatus);
+    public void UpdateTaskStatus(int id, string updatedStatus);
+
+    public void UpdateTaskScheduledFor(int id, string updatedScheduleFor);
 
     public void DeleteItem(int id);
 }

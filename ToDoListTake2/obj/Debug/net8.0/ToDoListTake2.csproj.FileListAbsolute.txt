@@ -48,3 +48,4 @@
 /Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/obj/Debug/net8.0/ToDoListTake2.pdb
 /Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/obj/Debug/net8.0/ToDoListTake2.genruntimeconfig.cache
 /Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/obj/Debug/net8.0/ref/ToDoListTake2.dll
+/Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/obj/Debug/net8.0/ToDoListTake2.sourcelink.json

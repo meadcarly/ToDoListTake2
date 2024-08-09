@@ -24,9 +24,14 @@ public class DapperToDoListRepository : IToDoListRepository
             new { task = task, status = status, scheduled_for = scheduled_for });
     }
 
-    public void UpdateTask(int id, string updatedStatus)
+    public void UpdateTaskStatus(int id, string updatedStatus)
     {
         _connection.Execute("UPDATE ToDo SET status = @updatedStatus WHERE id = @id;", new { id, updatedStatus});
+    }
+
+    public void UpdateTaskScheduledFor(int id, string updatedScheduleFor)
+    {
+        _connection.Execute("UPDATE ToDo SET scheduled_for = @updatedScheduleFor WHERE id = @id;", new { id, updatedScheduleFor });
     }
 
     public void DeleteItem(int id)
