@@ -22,7 +22,6 @@ class Program
         bool running = true;
         int userInput;
         var userAnswer = "";
-        bool userYesNo = true;
         string yesOrNo = "";
 
         while (running)
@@ -32,10 +31,10 @@ class Program
             Console.WriteLine("1. View your ToDo List");
             Console.WriteLine("2. Update a task status on your ToDo List");
             Console.WriteLine("3. Update a task: add a day you plan to tackle the task!");
-            Console.WriteLine("4. Add a new task to your ToDo List" );
+            Console.WriteLine("4. Add a new task to your ToDo List");
             Console.WriteLine("5. Delete a task from your ToDo List");
             Console.WriteLine("6. Exit");
-    
+
             int.TryParse(Console.ReadLine(), out userInput);
             while (userInput == null || userInput < 1 || userInput > 6)
             {
@@ -51,7 +50,7 @@ class Program
                     {
                         Console.WriteLine($"id: {item.id} | task: {item.task} | status: {item.status} | scheduled_for: {item.scheduled_for}");
                     }
-                    while ( itemsInToDoList.ListAllToDoItems().Count() == 0)
+                    while (itemsInToDoList.ListAllToDoItems().Count() == 0)
                     {
                         Console.WriteLine("Your ToDo List is currently empty!");
                         Console.WriteLine("Would you like to add a task? Yes/No");
@@ -61,7 +60,7 @@ class Program
                             Console.WriteLine("I'm sorry, that was not one of our options. Please type 'yes' or 'no'");
                             yesOrNo = Console.ReadLine().ToLower();
                         }
-                    
+
                         while (yesOrNo == "yes")
                         {
                             Console.WriteLine("Please enter the task you want to add to your ToDo List");
@@ -79,7 +78,7 @@ class Program
                         {
                             break;
                         }
-                    
+
                     }
 
                     Console.WriteLine("Press any key to continue");
@@ -88,7 +87,7 @@ class Program
                 case 2:
                     var taskId = 0;
                     Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
-                    while(!int.TryParse(Console.ReadLine(), out taskId))
+                    while (!int.TryParse(Console.ReadLine(), out taskId))
                     {
                         Console.WriteLine("Oops, you must enter a numeric value...");
                         int.TryParse(Console.ReadLine(), out taskId);
@@ -102,7 +101,7 @@ class Program
                             Console.WriteLine($"id: {item.id} | task: {item.task} | status: {item.status} | scheduled_for: {item.scheduled_for}");
                         }
                         Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id.");
-                        while(!int.TryParse(Console.ReadLine(), out taskId))
+                        while (!int.TryParse(Console.ReadLine(), out taskId))
                         {
                             Console.WriteLine("Oops, you must enter a numeric value...");
                             int.TryParse(Console.ReadLine(), out taskId);
@@ -123,7 +122,7 @@ class Program
                     if (yesOrNo == "yes")
                     {
                         Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
-                        while(!int.TryParse(Console.ReadLine(), out userInput))
+                        while (!int.TryParse(Console.ReadLine(), out userInput))
                         {
                             Console.WriteLine("Oops, you must enter a numeric value...");
                             int.TryParse(Console.ReadLine(), out userInput);
@@ -132,7 +131,7 @@ class Program
                         {
                             itemsInToDoList.ListAllToDoItems();
                             Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id.");
-                            while(!int.TryParse(Console.ReadLine(), out userInput))
+                            while (!int.TryParse(Console.ReadLine(), out userInput))
                             {
                                 Console.WriteLine("Oops, you must enter a numeric value...");
                                 int.TryParse(Console.ReadLine(), out userInput);
@@ -156,7 +155,7 @@ class Program
                     break;
                 case 3:
                     Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
-                    while(!int.TryParse(Console.ReadLine(), out taskId))
+                    while (!int.TryParse(Console.ReadLine(), out taskId))
                     {
                         Console.WriteLine("Oops, you must enter a numeric value...");
                         int.TryParse(Console.ReadLine(), out taskId);
@@ -170,7 +169,7 @@ class Program
                             Console.WriteLine($"id: {item.id} | task: {item.task} | status: {item.status} | scheduled_for: {item.scheduled_for}");
                         }
                         Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id.");
-                        while(!int.TryParse(Console.ReadLine(), out taskId))
+                        while (!int.TryParse(Console.ReadLine(), out taskId))
                         {
                             Console.WriteLine("Oops, you must enter a numeric value...");
                             int.TryParse(Console.ReadLine(), out taskId);
@@ -191,7 +190,7 @@ class Program
                     if (yesOrNo == "yes")
                     {
                         Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to reference the list'");
-                        while(!int.TryParse(Console.ReadLine(), out userInput))
+                        while (!int.TryParse(Console.ReadLine(), out userInput))
                         {
                             Console.WriteLine("Oops, you must enter a numeric value...");
                             int.TryParse(Console.ReadLine(), out userInput);
@@ -200,7 +199,7 @@ class Program
                         {
                             itemsInToDoList.ListAllToDoItems();
                             Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id.");
-                            while(!int.TryParse(Console.ReadLine(), out userInput))
+                            while (!int.TryParse(Console.ReadLine(), out userInput))
                             {
                                 Console.WriteLine("Oops, you must enter a numeric value...");
                                 int.TryParse(Console.ReadLine(), out userInput);
@@ -278,7 +277,7 @@ class Program
                         }
                     }
                     Console.WriteLine("What task id number would you like to delete in your ToDo List? (Hint: enter the number of the id.");
-                    while(!int.TryParse(Console.ReadLine(), out userInput))
+                    while (!int.TryParse(Console.ReadLine(), out userInput))
                     {
                         Console.WriteLine("Oops, you must enter a numeric value...");
                         int.TryParse(Console.ReadLine(), out userInput);
@@ -288,7 +287,7 @@ class Program
                     {
                         Console.WriteLine("I'm sorry, '0' is not an option. Please select the id of the task you would like to delete.");
                         int.TryParse(Console.ReadLine(), out userInput);
-                        while(!int.TryParse(Console.ReadLine(), out userInput))
+                        while (!int.TryParse(Console.ReadLine(), out userInput))
                         {
                             Console.WriteLine("Oops, you must enter a numeric value...");
                             int.TryParse(Console.ReadLine(), out userInput);
@@ -315,5 +314,5 @@ class Program
                     break;
             }
         }
-    } 
+    }
 }
