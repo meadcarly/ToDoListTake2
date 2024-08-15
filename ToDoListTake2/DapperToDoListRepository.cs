@@ -12,16 +12,27 @@ public class DapperToDoListRepository : IToDoListRepository
         _connection = connection;
     }
 
-    public IEnumerable<ToDoList> ListAllToDoItems()
+    public void ListAllToDoItems()
     {
-        return _connection.Query<ToDoList>("SELECT * FROM ToDo;");
+        var toDoItems = _connection.Query<ToDoList>("SELECT * FROM ToDo;");
+        if (toDoItems.Any())
+        {
+            foreach (var item in toDoItems)
+            {
+                Console.WriteLine($"id: {item.id} | task: {item.task} | status: {item.status} | scheduled_for: {item.scheduled_for}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Your ToDo List is currently empty!");
+        }
     }
 
     public void AddItem(string task, string status, string scheduled_for)
     {
-        _connection.Execute(
-            "INSERT INTO ToDo (task, status, scheduled_for) VALUES (@task, @status, @scheduled_for);",
-            new { task = task, status = status, scheduled_for = scheduled_for });
+        _connection.Execute("INSERT INTO ToDo (task, status, scheduled_for) VALUES (@task, @status, @scheduled_for);",
+          new { task = task, status = status, scheduled_for = scheduled_for });
+        Console.WriteLine("Your task was added to your ToDo List!");
     }
 
     public void UpdateTaskStatus(int id, string updatedStatus)
@@ -37,5 +48,17 @@ public class DapperToDoListRepository : IToDoListRepository
     public void DeleteItem(int id)
     {
         _connection.Execute("DELETE FROM ToDo WHERE id = @id;", new { id = id});
+    }
+
+    public (string task, string status, string scheduled_for) GetTaskDetails()
+    {
+        Console.WriteLine("Please enter the task you want to add to your ToDo List");
+        string taskAdd = Console.ReadLine();
+        Console.WriteLine("The status of your new task will start off as 'pending'");
+        string statusAdd = "pending";
+        Console.WriteLine("If you choose, you may write a day you plan to complete the task, OR you may write 'n/a'");
+        string scheduled_forAdd = Console.ReadLine();
+
+        return (taskAdd, statusAdd, scheduled_forAdd);
     }
 }

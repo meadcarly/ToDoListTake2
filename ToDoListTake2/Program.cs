@@ -21,79 +21,53 @@ class Program
         var itemsInToDoList = new DapperToDoListRepository(conn);
         bool running = true;
         var userAnswer = "";
+        var items = "";
         var taskId = 0;
-        string yesOrNo = "";
+        
 
         while (running)
         {
-           Prompts.WelcomeMenu();
+            Prompts.WelcomeMenu();
            
 
-           int userInput = UserInputs.MainMenuUserResponse();
+            int userInput = UserInputs.MainMenuUserResponse();
             switch (userInput)
             {
                 case 1:
-                    var items = itemsInToDoList.ListAllToDoItems();
-                    foreach (var item in items)
-                    {
-                        Console.WriteLine($"id: {item.id} | task: {item.task} | status: {item.status} | scheduled_for: {item.scheduled_for}");
-                    }
-                    while ( itemsInToDoList.ListAllToDoItems().Count() == 0)
-                    {
-                        Console.WriteLine("Your ToDo List is currently empty!");
-                        Console.WriteLine("Would you like to add a task? yes/no");
-                        yesOrNo = Console.ReadLine().ToLower();
-                        while (yesOrNo != "yes" && yesOrNo != "no")
-                        {
-                            Console.WriteLine("I'm sorry, that was not one of our options. Please type 'yes' or 'no'");
-                            yesOrNo = Console.ReadLine().ToLower();
-                        }
+                    itemsInToDoList.ListAllToDoItems();
                     
-                        while (yesOrNo == "yes")
-                        {
-                            Console.WriteLine("Please enter the task you want to add to your ToDo List");
-                            userAnswer = Console.ReadLine();
-                            Console.WriteLine("The status of your new task will start off as 'pending'");
-                            Console.WriteLine("For the scheduled_for section, you may write a day you plan to complete the task, or you may write 'n/a'");
-                            var day = Console.ReadLine();
-                            itemsInToDoList.AddItem(userAnswer, "pending", day);
-                            Console.WriteLine("Your task was added to your ToDo List!");
-                            Console.WriteLine("Would you like to add another task? yes/no");
-                            yesOrNo = Console.ReadLine().ToLower();
-                        }
-
-                        if (yesOrNo == "no")
-                        {
-                            break;
-                        }
-                    
+                    Console.WriteLine("Would you like to add a task? yes/no");
+                    userAnswer = UserInputs.UserResponseYesNo();
+                    while (userAnswer == "yes")
+                    {
+                        var taskDetails = itemsInToDoList.GetTaskDetails();
+                        itemsInToDoList.AddItem(taskDetails.task, taskDetails.status, taskDetails.scheduled_for);
+                        userAnswer = UserInputs.UserResponseYesNo();
                     }
 
-                    Console.WriteLine("Press any key to continue");
-                    Console.ReadKey();
+                    if (userAnswer == "no")
+                    {
+                        UserInputs.IfUserAnswerNo();
+                    }
+
                     break;
                 case 2:
                     do
                     {
-                        Console.WriteLine("Please enter the task you want to add to your ToDo List");
-                        userAnswer = Console.ReadLine();
-                        Console.WriteLine("The status of your new task will start off as 'pending'");
-                        Console.WriteLine("If you choose, you may write a day you plan to complete the task, OR you may write 'n/a'");
-                        var day = Console.ReadLine();
-                        itemsInToDoList.AddItem(userAnswer, "pending", day);
-                        Console.WriteLine("Your task was added to your ToDo List!");
+                        var taskDetails = itemsInToDoList.GetTaskDetails();
+                        itemsInToDoList.AddItem(taskDetails.task, taskDetails.status, taskDetails.scheduled_for);
                         Console.WriteLine("Would you like to add another task? yes/no");
-                        yesOrNo = Console.ReadLine().ToLower();
-                        while (yesOrNo != "yes" && yesOrNo != "no")
-                        {
-                            Console.WriteLine("I'm sorry, that was not one of our options. Please type 'yes' or 'no'");
-                            yesOrNo = Console.ReadLine().ToLower();
-                        }
-                    } while (yesOrNo == "yes");
+                        userAnswer = UserInputs.UserResponseYesNo();
+                    } while (userAnswer == "yes");
+                    
+                    if (userAnswer == "no")
+                    {
+                        UserInputs.IfUserAnswerNo();
+                    }
                     break;
                 //_____________________________________________________________________________________________
                 case 3:
-                    Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to view all to do items.'");
+                    /*Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to view all to do items.'");
                     while(!int.TryParse(Console.ReadLine(), out taskId))
                     {
                         Console.WriteLine("Oops, you must enter a numeric value...");
@@ -115,7 +89,7 @@ class Program
                         }
                     }
 
-                    Console.WriteLine("Ok, please enter the day of the week you plan to accomplish your task. (Example: Monday)");
+                    /Console.WriteLine("Ok, please enter the day of the week you plan to accomplish your task. (Example: Monday)");
                     var updatedDayOfWeek = Console.ReadLine();
                     itemsInToDoList.UpdateTaskScheduledFor(taskId, updatedDayOfWeek);
                     Console.WriteLine("Your status has been updated!");
@@ -228,7 +202,7 @@ class Program
                     Console.WriteLine("Press any key to continue");
                     Console.ReadKey();
                     break;
-                    
+
                 case 5:
                     items = itemsInToDoList.ListAllToDoItems();
                     foreach (var item in items)
@@ -333,7 +307,7 @@ class Program
                         } while (yesOrNo == "yes");
                     } while (yesOrNo == "yes");
 
-                    break;
+                    break;*/
                 case 6:
                     Console.WriteLine("Thank you for using ToDo! See you again soon...");
                     running = false;
