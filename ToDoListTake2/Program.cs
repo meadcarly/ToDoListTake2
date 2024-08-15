@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
 namespace ToDoListTake2;
-
+//This is my tester branch
 class Program
 {
     static void Main(string[] args)
@@ -54,7 +54,7 @@ class Program
                     while ( itemsInToDoList.ListAllToDoItems().Count() == 0)
                     {
                         Console.WriteLine("Your ToDo List is currently empty!");
-                        Console.WriteLine("Would you like to add a task? Yes/No");
+                        Console.WriteLine("Would you like to add a task? yes/no");
                         yesOrNo = Console.ReadLine().ToLower();
                         while (yesOrNo != "yes" && yesOrNo != "no")
                         {
@@ -71,7 +71,7 @@ class Program
                             var day = Console.ReadLine();
                             itemsInToDoList.AddItem(userAnswer, "pending", day);
                             Console.WriteLine("Your task was added to your ToDo List!");
-                            Console.WriteLine("Would you like to add another task? Yes/No");
+                            Console.WriteLine("Would you like to add another task? yes/no");
                             yesOrNo = Console.ReadLine().ToLower();
                         }
 
@@ -95,7 +95,7 @@ class Program
                         var day = Console.ReadLine();
                         itemsInToDoList.AddItem(userAnswer, "pending", day);
                         Console.WriteLine("Your task was added to your ToDo List!");
-                        Console.WriteLine("Would you like to add another task? Yes/No");
+                        Console.WriteLine("Would you like to add another task? yes/no");
                         yesOrNo = Console.ReadLine().ToLower();
                         while (yesOrNo != "yes" && yesOrNo != "no")
                         {
@@ -104,7 +104,7 @@ class Program
                         }
                     } while (yesOrNo == "yes");
                     break;
-                    //_____________________________________________________________________________________________
+                //_____________________________________________________________________________________________
                 case 3:
                     Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to view all to do items.'");
                     while(!int.TryParse(Console.ReadLine(), out taskId))
@@ -132,7 +132,7 @@ class Program
                     var updatedDayOfWeek = Console.ReadLine();
                     itemsInToDoList.UpdateTaskScheduledFor(taskId, updatedDayOfWeek);
                     Console.WriteLine("Your status has been updated!");
-                    Console.WriteLine("Would you like to update another item? Yes/No");
+                    Console.WriteLine("Would you like to update another item? yes/no");
                     yesOrNo = Console.ReadLine().ToLower();
                     while (yesOrNo != "yes" && yesOrNo != "no")
                     {
@@ -162,7 +162,7 @@ class Program
                         updatedDayOfWeek = Console.ReadLine();
                         itemsInToDoList.UpdateTaskScheduledFor(userInput, updatedDayOfWeek);
                         Console.WriteLine("Your status has been updated!");
-                        Console.WriteLine("Would you like to update another item? Yes/No");
+                        Console.WriteLine("Would you like to update another item? yes/no");
                         yesOrNo = Console.ReadLine().ToLower();
                     }
                     else
@@ -200,7 +200,7 @@ class Program
                     var updatedStatus = Console.ReadLine();
                     itemsInToDoList.UpdateTaskStatus(taskId, updatedStatus);
                     Console.WriteLine("Your status has been updated!");
-                    Console.WriteLine("Would you like to update another item? Yes/No");
+                    Console.WriteLine("Would you like to update another item? yes/no");
                     yesOrNo = Console.ReadLine().ToLower();
                     while (yesOrNo != "yes" && yesOrNo != "no")
                     {
@@ -230,7 +230,7 @@ class Program
                         userAnswer = Console.ReadLine();
                         itemsInToDoList.UpdateTaskStatus(userInput, userAnswer);
                         Console.WriteLine("Your status has been updated!");
-                        Console.WriteLine("Would you like to update another item? Yes/No");
+                        Console.WriteLine("Would you like to update another item? yes/no");
                         yesOrNo = Console.ReadLine().ToLower();
                     }
                     else
@@ -251,7 +251,7 @@ class Program
                     while (items.Count() == 0)
                     {
                         Console.WriteLine("Your ToDo List is currently empty!");
-                        Console.WriteLine("Would you like to add a task? Yes/No");
+                        Console.WriteLine("Would you like to add a task? yes/no");
                         yesOrNo = Console.ReadLine().ToLower();
                         while (yesOrNo != "yes" && yesOrNo != "no")
                         {
@@ -269,7 +269,7 @@ class Program
                             var day = Console.ReadLine();
                             itemsInToDoList.AddItem(userAnswer, "pending", day);
                             Console.WriteLine("Your task was added to your ToDo List!");
-                            Console.WriteLine("Would you like to add another task? Yes/No");
+                            Console.WriteLine("Would you like to add another task? yes/no");
                             yesOrNo = Console.ReadLine().ToLower();
                         }
 
@@ -278,7 +278,7 @@ class Program
                             //how to take me back to main menu
                         }
                     }
-                    Console.WriteLine("What task id would you like to delete in your ToDo List? (Hint: enter the id number.");
+                    Console.WriteLine("What task id would you like to delete in your ToDo List? (Hint: enter the id number.)");
                     while(!int.TryParse(Console.ReadLine(), out userInput))
                     {
                         Console.WriteLine("Oops, you must enter a numeric value...");
@@ -299,14 +299,53 @@ class Program
                     do
                     {
                         itemsInToDoList.DeleteItem(userInput);
-                        Console.WriteLine("The item has been deleted.\nWould you like to delete another item? Yes/No");
+                        Console.WriteLine("The item has been deleted.\nWould you like to delete another item? yes/no");
                         yesOrNo = Console.ReadLine().ToLower();
                         while (yesOrNo != "yes" && yesOrNo != "no")
                         {
                             Console.WriteLine("I'm sorry, that was not one of our options. Please type 'yes' or 'no'");
                             yesOrNo = Console.ReadLine().ToLower();
                         }
+
+                        do
+                        {
+                            Console.WriteLine(
+                                "What task id would you like to delete in your ToDo List? (Hint: enter the id number.");
+                            while (!int.TryParse(Console.ReadLine(), out userInput))
+                            {
+                                Console.WriteLine("Oops, you must enter a numeric value...");
+                                int.TryParse(Console.ReadLine(), out userInput);
+                            }
+
+                            while (userInput == 0)
+                            {
+                                Console.WriteLine(
+                                    "I'm sorry, '0' is not an option. Please select the id of the task you would like to delete.");
+                                int.TryParse(Console.ReadLine(), out userInput);
+                                while (!int.TryParse(Console.ReadLine(), out userInput))
+                                {
+                                    Console.WriteLine("Oops, you must enter a numeric value...");
+                                    int.TryParse(Console.ReadLine(), out userInput);
+                                }
+                            }
+
+                            do
+                            {
+                                itemsInToDoList.DeleteItem(userInput);
+                                Console.WriteLine(
+                                    "The item has been deleted.\nWould you like to delete another item? yes/no");
+                                yesOrNo = Console.ReadLine().ToLower();
+                                while (yesOrNo != "yes" && yesOrNo != "no")
+                                {
+                                    Console.WriteLine(
+                                        "I'm sorry, that was not one of our options. Please type 'yes' or 'no'");
+                                    yesOrNo = Console.ReadLine().ToLower();
+                                }
+                            } while (yesOrNo == "yes");
+
+                        } while (yesOrNo == "yes");
                     } while (yesOrNo == "yes");
+
                     break;
                 case 6:
                     Console.WriteLine("Thank you for using ToDo! See you again soon...");
