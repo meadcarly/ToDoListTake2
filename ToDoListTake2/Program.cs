@@ -20,29 +20,16 @@ class Program
 
         var itemsInToDoList = new DapperToDoListRepository(conn);
         bool running = true;
-        int userInput;
         var userAnswer = "";
         var taskId = 0;
         string yesOrNo = "";
 
         while (running)
         {
-            Console.WriteLine("Welcome to ToDo, where we help you organize your priorities! Tell me where you would like to start...");
-            Console.WriteLine();
-            Console.WriteLine("1. View your ToDo List");
-            Console.WriteLine("2. Add a new task to your ToDo List");
-            Console.WriteLine("3. Update a task: add a day you plan to tackle the task!");
-            Console.WriteLine("4. Update a task status on your ToDo List");
-            Console.WriteLine("5. Delete a task from your ToDo List");
-            Console.WriteLine("6. Exit");
-    
-            int.TryParse(Console.ReadLine(), out userInput);
-            while (userInput == null || userInput < 1 || userInput > 6)
-            {
-                Console.WriteLine("I'm sorry, that was not one of our options. Please type the number of the option you would like.");
-                int.TryParse(Console.ReadLine(), out userInput);
-            }
+           Prompts.WelcomeMenu();
+           
 
+           int userInput = UserInputs.MainMenuUserResponse();
             switch (userInput)
             {
                 case 1:
