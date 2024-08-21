@@ -2,7 +2,7 @@ namespace ToDoListTake2;
 
 public interface IToDoListRepository
 {
-    public IEnumerable<ToDoList> ListAllToDoItems();
+    public void ListAllToDoItems();
 
     public void AddItem(string task, string status, string scheduled_for);
 
