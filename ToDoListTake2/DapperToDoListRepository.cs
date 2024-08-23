@@ -61,4 +61,47 @@ public class DapperToDoListRepository : IToDoListRepository
 
         return (taskAdd, statusAdd, scheduled_forAdd);
     }
+
+    /*public int TryParseTaskId()
+    {
+        var taskId = 0;
+        while(!int.TryParse(Console.ReadLine(), out taskId))
+        {
+            Console.WriteLine("Oops, you must enter a numeric value...");
+            int.TryParse(Console.ReadLine(), out taskId);
+        }
+        return taskId;
+    }*/
+    public int GetTaskId()
+    {
+        var taskId = 0;
+        Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to view all to do items.)");
+        
+        while(!int.TryParse(Console.ReadLine(), out taskId))
+        {
+            Console.WriteLine("Oops, you must enter a numeric value...");
+            int.TryParse(Console.ReadLine(), out taskId);
+        }
+
+        return taskId;
+    }
+    public int GetTaskIdToDelete()
+    {
+        var taskId = 0;
+        Console.WriteLine("What task id number would you like to delete in your ToDo List?");
+        
+        while(!int.TryParse(Console.ReadLine(), out taskId))
+        {
+            Console.WriteLine("Oops, you must enter a numeric value...");
+            int.TryParse(Console.ReadLine(), out taskId);
+        }
+
+        return taskId;
+    }
+    
+    public bool IsListEmpty()
+    {
+        var count = _connection.ExecuteScalar<int>("SELECT COUNT(*) FROM ToDo;");
+        return count == 0;
+    }
 }
