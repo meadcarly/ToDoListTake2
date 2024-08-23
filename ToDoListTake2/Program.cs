@@ -42,6 +42,7 @@ class Program
                     {
                         var taskDetails = itemsInToDoList.GetTaskDetails();
                         itemsInToDoList.AddItem(taskDetails.task, taskDetails.status, taskDetails.scheduled_for);
+                        Console.WriteLine("Would you like to add another task? yes/no");
                         userAnswer = UserInputs.UserResponseYesNo();
                     }
 
@@ -79,10 +80,8 @@ class Program
                             
                         }
 
-                        Console.WriteLine(
-                            "Ok, please enter the day of the week you plan to accomplish your task. (Example: Monday)");
-                        var updatedDayOfWeek = Console.ReadLine();
-                        itemsInToDoList.UpdateTaskScheduledFor(taskId, updatedDayOfWeek);
+                        var updatedDay = itemsInToDoList.DayToAccomplishTask();
+                        itemsInToDoList.UpdateTaskScheduledFor(taskId, updatedDay);
                         Console.WriteLine("Your status has been updated!");
                         Console.WriteLine("Would you like to update another item? yes/no");
                         userAnswer = UserInputs.UserResponseYesNo();
@@ -102,10 +101,9 @@ class Program
 
                             taskId = itemsInToDoList.GetTaskId();
                         }
-                    
-                        Console.WriteLine("Ok, please enter an updated status for your task.");
-                        var updatedStatus = Console.ReadLine();
-                        itemsInToDoList.UpdateTaskStatus(taskId, updatedStatus);
+
+                        var updateStatus = itemsInToDoList.GetStatus();
+                        itemsInToDoList.UpdateTaskStatus(taskId, updateStatus);
                         Console.WriteLine("Your status has been updated!");
                         Console.WriteLine("Would you like to update another item? yes/no");
                         userAnswer = UserInputs.UserResponseYesNo();
