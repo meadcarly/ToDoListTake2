@@ -26,9 +26,21 @@ public class UserInputs
         return yesOrNo;
     }
 
-    public static void IfUserAnswerNo()
+    public static void IfUserAnswerNoEnter()
     {
         Console.WriteLine("Ok, since you don't need to enter any more tasks, I'll return you to the main menu.");
+        Console.WriteLine("Press any key to continue");
+        Console.ReadKey();
+    }
+    public static void IfUserAnswerNoUpdates()
+    {
+        Console.WriteLine("Ok, since you don't need to update any more tasks, I'll return you to the main menu.");
+        Console.WriteLine("Press any key to continue");
+        Console.ReadKey();
+    }
+    public static void IfUserAnswerNoDelete()
+    {
+        Console.WriteLine("Ok, since you don't need to delete any more tasks, I'll return you to the main menu.");
         Console.WriteLine("Press any key to continue");
         Console.ReadKey();
     }

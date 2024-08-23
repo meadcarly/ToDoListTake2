@@ -52,13 +52,101 @@ public class DapperToDoListRepository : IToDoListRepository
 
     public (string task, string status, string scheduled_for) GetTaskDetails()
     {
-        Console.WriteLine("Please enter the task you want to add to your ToDo List");
-        string taskAdd = Console.ReadLine();
+        string taskAdd;
+        do
+        {
+            Console.WriteLine("Please enter the task you want to add to your ToDo List");
+            taskAdd = Console.ReadLine().Trim();
+            if (string.IsNullOrEmpty(taskAdd))
+            {
+                Console.WriteLine("Oops, you forgot to enter the task. Please write a task to add to your ToDo List.");
+            }
+        } while (string.IsNullOrEmpty(taskAdd));
+        
         Console.WriteLine("The status of your new task will start off as 'pending'");
         string statusAdd = "pending";
         Console.WriteLine("If you choose, you may write a day you plan to complete the task, OR you may write 'n/a'");
         string scheduled_forAdd = Console.ReadLine();
 
         return (taskAdd, statusAdd, scheduled_forAdd);
+    }
+
+    /*public int TryParseTaskId()
+    {
+        var taskId = 0;
+        while(!int.TryParse(Console.ReadLine(), out taskId))
+        {
+            Console.WriteLine("Oops, you must enter a numeric value...");
+            int.TryParse(Console.ReadLine(), out taskId);
+        }
+        return taskId;
+    }*/
+    public int GetTaskId()
+    {
+        int taskId;
+        Console.WriteLine("What task id number would you like to update in your ToDo List? (Hint: enter the number of the id or type '0' to view all to do items.)");
+        
+        while(true)
+        {
+            if (int.TryParse(Console.ReadLine(), out taskId))
+            {
+                return taskId;
+            }
+            else
+            {  
+                Console.WriteLine("Oops, you must enter a numeric value...");
+            }
+        }
+    }
+    public int GetTaskIdToDelete()
+    {
+        int taskId;
+        Console.WriteLine("What task id number would you like to delete in your ToDo List?");
+
+        while(true)
+        {
+            if (int.TryParse(Console.ReadLine(), out taskId))
+            {
+                return taskId;
+            }
+            else
+            {
+                Console.WriteLine("Oops, you must enter a numeric value...");
+            }
+        }
+        
+    }
+    
+    public bool IsListEmpty()
+    {
+        var count = _connection.ExecuteScalar<int>("SELECT COUNT(*) FROM ToDo;");
+        return count == 0;
+    }
+
+    public string DayToAccomplishTask()
+    {
+        string updatedDayOfWeek;
+        do
+        {
+            Console.WriteLine("Ok, please enter the day of the week you plan to accomplish your task. (Example: Monday)");
+        
+             updatedDayOfWeek = Console.ReadLine();
+            
+        } while (string.IsNullOrEmpty(updatedDayOfWeek));
+
+        return updatedDayOfWeek;
+    }
+
+    public string GetStatus()
+    {
+        string updatedStatus;
+        do
+        {
+            Console.WriteLine("Ok, please enter an updated status for your task.");
+            
+            updatedStatus = Console.ReadLine();
+        } while (string.IsNullOrEmpty(updatedStatus));
+
+        return updatedStatus;
     }
 }
