@@ -4,7 +4,7 @@ public class Prompts
 {
     public static void WelcomeMenu()
     {
-        Console.WriteLine("Welcome to ToDo, where we help you organize your priorities! Tell me where you would like to start...");
+        Console.WriteLine("Welcome to ToDo, where we help you organize your priorities! Tell me what you would like to start with...");
         Console.WriteLine();
         Console.WriteLine("1. View your ToDo List");
         Console.WriteLine("2. Add a new task to your ToDo List");
