@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+Mr9c5oA6ciCAqXQpacA6FdRdfdA7+NksyHsidJlq7Xaj1PDgwOcmlWMIs9bp2fFpq/mz8XnQWvcXSsnDXKZow==",
+  "dgSpecHash": "eyWP2Atk6/6/KjvlWBp/tJl+tK7yUVWaOj5zqYuY9hmu4GFa4mmvbmcfNSDfvvn7QE6UHz0dd8VFAek2H11ECw==",
   "success": true,
-  "projectFilePath": "/Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/ToDoListTake2.csproj",
+  "projectFilePath": "/Users/carlymead/Desktop/Projects/ToDoListTake2/ToDoListTake2/ToDoListTake2.csproj",
   "expectedPackageFiles": [
     "/Users/carlymead/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "/Users/carlymead/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",

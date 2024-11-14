@@ -2030,11 +2030,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/ToDoListTake2.csproj",
+      "projectUniqueName": "/Users/carlymead/Desktop/Projects/ToDoListTake2/ToDoListTake2/ToDoListTake2.csproj",
       "projectName": "ToDoListTake2",
-      "projectPath": "/Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/ToDoListTake2.csproj",
+      "projectPath": "/Users/carlymead/Desktop/Projects/ToDoListTake2/ToDoListTake2/ToDoListTake2.csproj",
       "packagesPath": "/Users/carlymead/.nuget/packages/",
-      "outputPath": "/Users/carlymead/Desktop/repos/ToDoListTake2/ToDoListTake2/obj/",
+      "outputPath": "/Users/carlymead/Desktop/Projects/ToDoListTake2/ToDoListTake2/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/carlymead/.nuget/NuGet/NuGet.Config"
@@ -2090,7 +2090,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
